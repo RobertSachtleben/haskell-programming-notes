@@ -28,9 +28,6 @@ spreadKeyword k s = go k s 0
         go k (x:xs) n = if isLetter x then (:) (k !! (mod n (length k))) $ go k xs (n+1)
                                       else x : go k xs n
 
-
--- this implementation assumes that the keyword uses capital letters only
--- this implementation also does 
 vigenere :: Keyword -> String -> String
 vigenere keyword message = map (\(k,m) -> if isLetter m then shiftCharacter (ord k - ord 'A') m else m) $ zip (spreadKeyword keyword message) message
     
